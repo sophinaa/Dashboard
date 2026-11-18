@@ -36,7 +36,7 @@ export function ResearcherSetup({ config, aiKeyConfigured, codeRequired, model }
   }
 
   const option = (name: string, value: string, checked: boolean, onChange: () => void, label: string, hint: string) => (
-    <label className={`flex cursor-pointer gap-3 rounded-lg border p-3 ${checked ? "border-forest bg-forest-50" : "border-line bg-surface"}`}>
+    <label className={`flex cursor-pointer gap-3 rounded-3xl p-4 ${checked ? "bg-tile-sage ring-2 ring-forest/40" : "bg-panel"}`}>
       <input type="radio" name={name} value={value} checked={checked} onChange={onChange} className="mt-1 h-4 w-4 accent-forest" />
       <span>
         <span className="block text-sm font-medium text-ink">{label}</span>
@@ -47,7 +47,7 @@ export function ResearcherSetup({ config, aiKeyConfigured, codeRequired, model }
 
   return (
     <main className="mx-auto max-w-2xl px-6 py-10">
-      <Link href="/" className="text-sm font-medium text-forest underline">
+      <Link href="/" className="text-sm font-medium text-ink underline">
         ← Back to dashboard
       </Link>
       <h1 className="mt-4 text-2xl font-semibold text-ink">Researcher setup</h1>
@@ -91,12 +91,12 @@ export function ResearcherSetup({ config, aiKeyConfigured, codeRequired, model }
             {state.msg}
           </p>
         )}
-        <button type="submit" disabled={state.kind === "saving"} className="rounded-lg bg-forest px-4 py-2 text-sm font-medium text-white hover:bg-forest-700 disabled:opacity-60">
+        <button type="submit" disabled={state.kind === "saving"} className="rounded-full bg-night px-5 py-2.5 text-sm font-medium text-white hover:bg-night-2 disabled:opacity-60">
           {state.kind === "saving" ? "Saving…" : "Save and open dashboard"}
         </button>
       </form>
 
-      <section className="mt-10 rounded-lg border border-line bg-surface p-4 text-xs leading-relaxed text-ink-2">
+      <section className="mt-10 rounded-3xl bg-panel p-5 text-xs leading-relaxed text-ink-2">
         <h2 className="text-sm font-semibold text-ink">Data collection</h2>
         <p className="mt-1">
           StoreScope records no names, emails, recordings or interaction logs. The condition is kept in a browser cookie only. In the AI condition, typed questions and calculated shop figures are sent to the model

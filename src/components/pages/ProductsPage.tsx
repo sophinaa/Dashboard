@@ -114,7 +114,7 @@ export function ProductsPage() {
       key: "d",
       header: "Details",
       render: (r) => (
-        <button type="button" onClick={() => setDetailId(r.productId)} aria-pressed={detailId === r.productId} className="rounded-md border border-line-strong px-2 py-0.5 text-xs font-medium text-ink-2 hover:border-forest hover:text-forest">
+        <button type="button" onClick={() => setDetailId(r.productId)} aria-pressed={detailId === r.productId} className={`rounded-full px-3 py-1 text-xs font-medium ${detailId === r.productId ? "bg-night text-white" : "bg-panel text-ink hover:bg-sunken"}`}>
           {detailId === r.productId ? "Showing" : "View"}
           <span className="sr-only"> details for {r.name}</span>
         </button>
@@ -146,16 +146,16 @@ export function ProductsPage() {
         fulfilment are charged per order, not per product, so they are not split across products here.
       </Callout>
 
-      <fieldset className="rounded-xl border border-line bg-surface px-5 py-4 shadow-card">
-        <legend className="px-1 text-sm font-semibold text-ink">Products shown in the chart and table</legend>
-        <div className="mt-1 flex flex-wrap gap-x-5 gap-y-2">
+      <fieldset className="rounded-4xl bg-panel px-5 py-4">
+        <legend className="float-left mb-3 w-full text-lg font-semibold tracking-tight text-ink">Products shown in the chart and table</legend>
+        <div className="clear-both flex flex-wrap gap-2">
           {ds.products.map((p) => (
-            <label key={p.product_id} className="inline-flex items-center gap-2 text-sm text-ink-2">
-              <input type="checkbox" checked={visible.includes(p.product_id)} onChange={() => toggle(p.product_id)} className="h-4 w-4 accent-forest" aria-describedby={`${groupId}-hint`} />
+            <label key={p.product_id} className={`inline-flex cursor-pointer items-center gap-2 rounded-full px-3.5 py-1.5 text-sm font-medium focus-within:outline focus-within:outline-[3px] focus-within:outline-forest ${visible.includes(p.product_id) ? "bg-night text-white" : "bg-surface text-ink-2"}`}>
+              <input type="checkbox" checked={visible.includes(p.product_id)} onChange={() => toggle(p.product_id)} className="h-3.5 w-3.5 accent-tile-sage" aria-describedby={`${groupId}-hint`} />
               {p.name}
             </label>
           ))}
-          <button type="button" onClick={() => setVisible(ds.products.map((p) => p.product_id))} className="text-sm font-medium text-forest underline">
+          <button type="button" onClick={() => setVisible(ds.products.map((p) => p.product_id))} className="rounded-full px-3 py-1.5 text-sm font-medium text-ink underline">
             Show all
           </button>
         </div>
@@ -263,7 +263,7 @@ function CompareCard({ rows, a, b, setA, setB }: { rows: ProductRow[]; a: string
             <label htmlFor={`${id}-${i}`} className="mb-1 text-xs font-medium text-ink-2">
               {s.label}
             </label>
-            <select id={`${id}-${i}`} value={s.v} onChange={(e) => s.set(e.target.value)} className="h-9 rounded-md border border-line-strong bg-surface px-2.5 text-sm">
+            <select id={`${id}-${i}`} value={s.v} onChange={(e) => s.set(e.target.value)} className="h-9 rounded-full border-0 bg-surface pl-3.5 pr-8 text-sm font-medium">
               {rows.map((r) => (
                 <option key={r.productId} value={r.productId}>
                   {r.name}
@@ -273,12 +273,12 @@ function CompareCard({ rows, a, b, setA, setB }: { rows: ProductRow[]; a: string
           </div>
         ))}
       </div>
-      <div className="overflow-x-auto rounded-lg border border-line">
+      <div className="overflow-x-auto rounded-3xl bg-surface p-1.5">
         <table className="w-full text-sm">
           <caption className="sr-only">
             Comparison of {ra.name} and {rb.name}
           </caption>
-          <thead className="bg-sunken text-xs uppercase tracking-wide text-ink-2">
+          <thead className="text-xs text-ink-muted">
             <tr>
               <th scope="col" className="px-3 py-2 text-left">Measure</th>
               <th scope="col" className="px-3 py-2 text-right">{ra.name}</th>
@@ -338,7 +338,7 @@ function DetailCard({ productId, setProductId, row, prev }: { productId: string;
           <label htmlFor={`${id}-p`} className="sr-only">
             Product to show details for
           </label>
-          <select id={`${id}-p`} value={productId} onChange={(e) => setProductId(e.target.value)} className="h-8 rounded-md border border-line-strong bg-surface px-2 text-sm">
+          <select id={`${id}-p`} value={productId} onChange={(e) => setProductId(e.target.value)} className="h-8 rounded-full border-0 bg-surface pl-3 pr-8 text-sm font-medium">
             {ds.products.map((p) => (
               <option key={p.product_id} value={p.product_id}>
                 {p.name}

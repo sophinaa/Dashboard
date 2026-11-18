@@ -61,7 +61,7 @@ The condition is stored in an httpOnly cookie in that browser, and the server en
 - `/api/ai` returns 409 if the page still holds a dataset that no longer matches the setting, which prevents stale results.
 
 **What differs between conditions.** Only the AI assistant differs:
-- In the no-AI condition, the "Ask the AI assistant" button and panel are not rendered, and the server refuses AI requests.
+- In the no-AI condition, the "Ask the assistant" button and panel are not rendered, and the server refuses AI requests.
 - Charts, tables, definitions, tooltips and filters are identical in both conditions.
 - The dashboard has no generated summaries or hard-coded insight cards in either condition.
 

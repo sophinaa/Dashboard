@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Public_Sans } from "next/font/google";
+import { Instrument_Sans } from "next/font/google";
 import "./globals.css";
 import { StudyProvider } from "@/components/providers/StudyProvider";
 import { getStudyConfig } from "@/lib/study/server";
 
-const sans = Public_Sans({ subsets: ["latin"], variable: "--font-sans", display: "swap" });
+const sans = Instrument_Sans({ subsets: ["latin"], variable: "--font-sans", display: "swap" });
 
 export const metadata: Metadata = {
   title: "StoreScope",

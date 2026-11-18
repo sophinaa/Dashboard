@@ -61,9 +61,9 @@ export function JourneyPage() {
           actions={
             <fieldset>
               <legend className="mb-1 text-xs font-medium text-ink-2">Device</legend>
-              <div className="inline-flex rounded-lg border border-line bg-sunken p-0.5">
+              <div className="inline-flex rounded-full bg-surface p-1">
                 {(["all", "mobile", "desktop"] as DeviceFilter[]).map((d) => (
-                  <label key={d} className={`cursor-pointer rounded-md px-3 py-1 text-sm font-medium focus-within:outline focus-within:outline-2 focus-within:outline-forest ${device === d ? "bg-surface text-ink shadow-card" : "text-ink-muted"}`}>
+                  <label key={d} className={`cursor-pointer rounded-full px-3.5 py-1 text-sm font-medium focus-within:outline focus-within:outline-[3px] focus-within:outline-forest ${device === d ? "bg-night text-white" : "text-ink-2 hover:text-ink"}`}>
                     <input type="radio" name={`${id}-device`} value={d} checked={device === d} onChange={() => setDevice(d)} className="sr-only" />
                     {DEVICE_LABEL[d]}
                   </label>
@@ -82,14 +82,14 @@ export function JourneyPage() {
             const prevRate = rateKey && sel.pr ? sel.pr[rateKey] : null;
             const ppc = ppDiff(rate, prevRate);
             return (
-              <li key={s.key} className="grid items-center gap-x-4 gap-y-1 md:grid-cols-[180px_1fr_300px]">
+              <li key={s.key} className="grid items-center gap-x-4 gap-y-1 md:grid-cols-[170px_1fr_400px]">
                 <div className="flex items-center text-sm font-medium text-ink">
                   {s.label}
                   <InfoTip text={s.help} label={s.label} />
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="h-5 flex-1 rounded bg-sunken" aria-hidden>
-                    <div className="h-5 rounded" style={{ width: `${width}%`, background: SERIES[0], opacity: 1 - i * 0.15 }} />
+                  <div className="h-6 flex-1 rounded-full bg-surface" aria-hidden>
+                    <div className="h-6 rounded-full" style={{ width: `${width}%`, background: SERIES[0], opacity: 1 - i * 0.15 }} />
                   </div>
                   <span className="w-20 text-right text-sm font-semibold text-ink num">{count(v)}</span>
                 </div>
@@ -240,7 +240,7 @@ function TrendCard({ trend, rate, setRate }: { trend: FunnelTrendPoint[]; rate: 
           <label htmlFor={`${id}-r`} className="sr-only">
             Rate to chart
           </label>
-          <select id={`${id}-r`} value={rate} onChange={(e) => setRate(e.target.value as keyof FunnelRates)} className="h-8 rounded-md border border-line-strong bg-surface px-2 text-sm">
+          <select id={`${id}-r`} value={rate} onChange={(e) => setRate(e.target.value as keyof FunnelRates)} className="h-8 rounded-full border-0 bg-surface pl-3 pr-8 text-sm font-medium">
             {FUNNEL_RATE_DEFS.map((d) => (
               <option key={d.key} value={d.key}>
                 {d.label}

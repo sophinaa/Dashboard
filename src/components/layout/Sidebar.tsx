@@ -5,11 +5,11 @@ import { Icon } from "@/components/ui/Icon";
 import { useStudy } from "@/components/providers/StudyProvider";
 
 export const NAV = [
-  { href: "/", label: "Overview", icon: "overview", page: "overview" },
-  { href: "/products", label: "Products", icon: "products", page: "products" },
-  { href: "/journey", label: "Customer journey", icon: "journey", page: "journey" },
-  { href: "/marketing", label: "Marketing", icon: "marketing", page: "marketing" },
-  { href: "/experiments", label: "Experiments", icon: "experiments", page: "experiments" },
+  { href: "/", label: "Overview", icon: "overview", page: "overview", heading: "How Willow & Co is doing" },
+  { href: "/products", label: "Products", icon: "products", page: "products", heading: "Your products" },
+  { href: "/journey", label: "Customer journey", icon: "journey", page: "journey", heading: "How shoppers move through the shop" },
+  { href: "/marketing", label: "Marketing", icon: "marketing", page: "marketing", heading: "Where your orders come from" },
+  { href: "/experiments", label: "Experiments", icon: "experiments", page: "experiments", heading: "Homepage banner test" },
 ] as const;
 
 export function Sidebar() {
@@ -17,15 +17,12 @@ export function Sidebar() {
   const study = useStudy();
   return (
     <nav aria-label="Dashboard sections" className="flex h-full flex-col">
-      <div className="px-4 pb-4 pt-5">
-        <p className="flex items-center gap-2 text-lg font-semibold tracking-tight text-ink">
-          <span aria-hidden className="inline-flex h-7 w-7 items-center justify-center rounded-md bg-forest text-sm font-bold text-white">
-            S
-          </span>
-          StoreScope
+      <div className="px-6 pb-8 pt-7">
+        <p className="text-2xl font-semibold tracking-tight text-white">
+          storescope<span aria-hidden className="text-tile-sage">.</span>
         </p>
-        <p className="mt-1 pl-9 text-xs text-ink-muted">Shop performance, explained</p>
       </div>
+      <p className="px-6 pb-2 text-xs font-medium text-night-muted">Dashboard</p>
       <ul className="flex flex-col gap-1 px-3">
         {NAV.map((n) => {
           const active = n.href === "/" ? pathname === "/" : pathname.startsWith(n.href);
@@ -34,23 +31,43 @@ export function Sidebar() {
               <Link
                 href={n.href}
                 aria-current={active ? "page" : undefined}
-                className={`flex items-center gap-2.5 rounded-lg px-3 py-2 text-sm font-medium ${active ? "bg-forest text-white" : "text-ink-2 hover:bg-sunken hover:text-ink"}`}
+                className={`flex items-center gap-3 rounded-full px-3.5 py-2.5 text-sm font-medium ${
+                  active ? "bg-tile-sage text-ink" : "text-night-text hover:bg-night-2 hover:text-white"
+                }`}
               >
-                <Icon name={n.icon} />
+                <Icon name={n.icon} className="h-[18px] w-[18px]" />
                 {n.label}
               </Link>
             </li>
           );
         })}
       </ul>
-      <div className="mt-auto space-y-3 px-5 pb-6 pt-6 text-xs text-ink-muted">
-        {!study.participantMode && (
-          <Link href="/researcher" className="flex items-center gap-2 rounded-md px-1 py-1 font-medium text-ink-2 hover:text-forest">
-            <Icon name="settings" className="h-4 w-4" />
-            Researcher setup
-          </Link>
-        )}
-        <p className="leading-relaxed">Research prototype. All shop figures are synthetic.</p>
+      {!study.participantMode && (
+        <>
+          <p className="px-6 pb-2 pt-6 text-xs font-medium text-night-muted">Study</p>
+          <ul className="px-3">
+            <li>
+              <Link href="/researcher" className="flex items-center gap-3 rounded-full px-3.5 py-2.5 text-sm font-medium text-night-text hover:bg-night-2 hover:text-white">
+                <Icon name="settings" className="h-[18px] w-[18px]" />
+                Researcher setup
+              </Link>
+            </li>
+          </ul>
+        </>
+      )}
+      <div className="mt-auto p-3">
+        <div className="rounded-2xl bg-night-2 p-4">
+          <div className="flex items-center gap-3">
+            <span aria-hidden className="flex h-9 w-9 items-center justify-center rounded-full bg-tile-butter text-ink">
+              <Icon name="store" className="h-[18px] w-[18px]" />
+            </span>
+            <div>
+              <p className="text-sm font-semibold text-white">Willow &amp; Co</p>
+              <p className="text-xs text-night-muted">Skincare shop</p>
+            </div>
+          </div>
+          <p className="mt-3 text-xs leading-relaxed text-night-text">A fictional shop. Every figure here is synthetic research data.</p>
+        </div>
       </div>
     </nav>
   );

@@ -72,8 +72,10 @@ export function OverviewPage() {
           Key figures for {formatRange(range)}
         </h2>
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-3 xl:grid-cols-6">
-          <KpiCard label="Net revenue" value={money(cur.netRevenue)} help={DEFINITIONS["Net revenue"]} {...amountKpi(cur.netRevenue, prev?.netRevenue)} sub="After discounts and refunds" />
+          <KpiCard tone="sage" icon="pound" label="Net revenue" value={money(cur.netRevenue)} help={DEFINITIONS["Net revenue"]} {...amountKpi(cur.netRevenue, prev?.netRevenue)} sub="After discounts and refunds" />
           <KpiCard
+            tone="sky"
+            icon="bag"
             label="Placed orders"
             value={count(cur.orders)}
             help={DEFINITIONS["Placed orders"]}
@@ -81,9 +83,11 @@ export function OverviewPage() {
             deltaText={ordersCmp.change === null ? "" : `${signedCount(ordersCmp.change)}${ordersCmp.pctChange !== null ? ` (${signedPct(ordersCmp.pctChange)})` : ""}`}
             previousText={ordersCmp.previous === null ? null : `vs ${count(ordersCmp.previous)}`}
           />
-          <KpiCard label="Average order value" value={money(curR.averageOrderValue)} help={DEFINITIONS["Average order value"]} {...aov} />
-          <KpiCard label="Gross profit" value={money(cur.grossProfit)} help={DEFINITIONS["Gross profit"]} {...amountKpi(cur.grossProfit, prev?.grossProfit)} sub="After product costs (COGS)" />
+          <KpiCard tone="butter" icon="receipt" label="Average order value" value={money(curR.averageOrderValue)} help={DEFINITIONS["Average order value"]} {...aov} />
+          <KpiCard tone="blush" icon="leaf" label="Gross profit" value={money(cur.grossProfit)} help={DEFINITIONS["Gross profit"]} {...amountKpi(cur.grossProfit, prev?.grossProfit)} sub="After product costs (COGS)" />
           <KpiCard
+            tone="lilac"
+            icon="percent"
             label="Gross margin"
             value={pct(curR.grossMargin)}
             help={DEFINITIONS["Gross margin"]}
@@ -93,6 +97,8 @@ export function OverviewPage() {
             sub="Change in percentage points"
           />
           <KpiCard
+            tone="sand"
+            icon="scale"
             label="Contribution after marketing"
             value={money(cur.contributionAfterMarketing)}
             help={DEFINITIONS["Contribution after marketing"]}
@@ -111,7 +117,7 @@ export function OverviewPage() {
 
       <Card>
         <details>
-          <summary className="cursor-pointer text-base font-semibold text-ink">About this data: definitions and limits</summary>
+          <summary className="cursor-pointer text-lg font-semibold tracking-tight text-ink">About this data: definitions and limits</summary>
           <div className="mt-4 grid gap-4 lg:grid-cols-2">
             <dl className="space-y-2 text-sm">
               {Object.entries(DEFINITIONS).map(([k, v]) => (

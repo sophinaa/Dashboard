@@ -95,10 +95,10 @@ export function MarketingPage() {
       </Callout>
 
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-4">
-        <KpiCard label="Total marketing spend" value={money(totalSpend)} help={DEFINITIONS["Marketing spend"]} {...amountDelta(totalSpend, m.prevRows?.reduce((s, r) => s + r.spend, 0))} />
-        <KpiCard label="Paid ad spend" value={money(m.paid.spend)} help="Paid search + paid social click costs." {...amountDelta(m.paid.spend, m.prevPaid?.spend)} />
-        <KpiCard label="Paid ROAS" value={ratio(m.paid.roas)} help={DEFINITIONS["Paid ROAS"]} sub={<>£{m.paid.roas !== null ? m.paid.roas.toFixed(2) : "n/a"} attributed revenue per £1 of paid spend{m.prevPaid ? ` · prev ${ratio(m.prevPaid.roas)}` : ""}</>} />
-        <KpiCard label="Contribution after marketing" value={money(totalCam)} help={DEFINITIONS["Contribution after marketing"]} {...amountDelta(totalCam, m.prevRows?.reduce((s, r) => s + r.contributionAfterMarketing, 0))} sub="All channels · matches Overview" />
+        <KpiCard tone="butter" icon="marketing" label="Total marketing spend" value={money(totalSpend)} help={DEFINITIONS["Marketing spend"]} {...amountDelta(totalSpend, m.prevRows?.reduce((s, r) => s + r.spend, 0))} />
+        <KpiCard tone="sky" icon="clicks" label="Paid ad spend" value={money(m.paid.spend)} help="Paid search + paid social click costs." {...amountDelta(m.paid.spend, m.prevPaid?.spend)} />
+        <KpiCard tone="blush" icon="receipt" label="Paid ROAS" value={ratio(m.paid.roas)} help={DEFINITIONS["Paid ROAS"]} sub={<>£{m.paid.roas !== null ? m.paid.roas.toFixed(2) : "n/a"} attributed revenue per £1 of paid spend{m.prevPaid ? ` · prev ${ratio(m.prevPaid.roas)}` : ""}</>} />
+        <KpiCard tone="sand" icon="scale" label="Contribution after marketing" value={money(totalCam)} help={DEFINITIONS["Contribution after marketing"]} {...amountDelta(totalCam, m.prevRows?.reduce((s, r) => s + r.contributionAfterMarketing, 0))} sub="All channels · matches Overview" />
       </div>
 
       <ChartCard

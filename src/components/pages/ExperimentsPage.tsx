@@ -93,10 +93,10 @@ function OutcomeCard({ comparison: c, primary, a, b, kind }: { comparison: Outco
   const ciA = kind === "conversion" ? a.conversionCI : a.ctrCI;
   const ciB = kind === "conversion" ? b.conversionCI : b.ctrCI;
   return (
-    <Card className={primary ? "border-forest/50" : ""}>
+    <Card className={primary ? "ring-2 ring-forest/40" : ""}>
       <p className="text-xs font-semibold uppercase tracking-wide text-ink-muted">{primary ? "Primary outcome (decided in advance)" : "Secondary outcome"}</p>
       <h2 className="mt-1 text-base font-semibold text-ink">{kind === "conversion" ? "Purchase conversion" : "Banner click-through rate"}</h2>
-      <div className="mt-3 flex items-start gap-3 rounded-lg border border-line bg-sunken p-3">
+      <div className="mt-3 flex items-start gap-3 rounded-3xl bg-surface p-4">
         <Icon name={icon} className="mt-0.5 h-5 w-5 flex-none text-ink-2" />
         <div>
           <p className="font-semibold text-ink">{v.title}</p>

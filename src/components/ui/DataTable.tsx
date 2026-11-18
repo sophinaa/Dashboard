@@ -49,21 +49,21 @@ export function DataTable<T>({ caption, columns, rows, rowKey, footer, initialSo
   const pad = dense ? "px-2.5 py-1" : "px-2.5 py-1.5";
 
   return (
-    <div className="overflow-x-auto rounded-lg border border-line" tabIndex={0} role="region" aria-label={caption}>
+    <div className="overflow-x-auto rounded-3xl bg-surface p-1.5" tabIndex={0} role="region" aria-label={caption}>
       <table className="w-full border-collapse text-sm">
         <caption className={captionHidden ? "sr-only" : "px-3 py-2 text-left text-sm font-medium text-ink"}>{caption}</caption>
-        <thead className="bg-sunken text-xs uppercase tracking-wide text-ink-2">
+        <thead className="text-xs text-ink-muted">
           <tr>
             {columns.map((c) => {
               const active = sort?.key === c.key;
               const ariaSort = active ? (sort!.dir === "asc" ? "ascending" : "descending") : c.sortValue ? "none" : undefined;
               return (
-                <th key={c.key} scope="col" aria-sort={ariaSort} className={`${pad} align-bottom font-semibold leading-snug ${c.align === "right" ? "text-right" : "text-left"}`}>
+                <th key={c.key} scope="col" aria-sort={ariaSort} className={`${pad} align-bottom font-medium leading-snug ${c.align === "right" ? "text-right" : "text-left"}`}>
                   <span className={`inline-flex items-center gap-0.5 ${c.align === "right" ? "flex-row-reverse" : ""}`}>
                     {c.sortValue ? (
                       <button
                         type="button"
-                        className={`inline-flex items-center gap-1 rounded uppercase tracking-wide hover:text-forest ${c.align === "right" ? "text-right" : "text-left"}`}
+                        className={`inline-flex items-center gap-1 rounded font-medium hover:text-ink ${c.align === "right" ? "text-right" : "text-left"}`}
                         onClick={() => setSort((s) => (s?.key === c.key ? { key: c.key, dir: s.dir === "desc" ? "asc" : "desc" } : { key: c.key, dir: "desc" }))}
                       >
                         {c.header}
@@ -85,7 +85,7 @@ export function DataTable<T>({ caption, columns, rows, rowKey, footer, initialSo
             const k = rowKey(row);
             const selected = selectedKey === k;
             return (
-              <tr key={k} className={`border-t border-line ${selected ? "bg-forest-50" : "bg-surface"} `}>
+              <tr key={k} className={`border-t border-line/70 ${selected ? "bg-tile-sage/50" : ""}`}>
                 {columns.map((c) => {
                   const cls = `${pad} ${c.align === "right" ? "text-right num" : "text-left"} align-top`;
                   return c.rowHeader ? (
@@ -102,7 +102,7 @@ export function DataTable<T>({ caption, columns, rows, rowKey, footer, initialSo
             );
           })}
         </tbody>
-        {footer && <tfoot className="border-t-2 border-line-strong bg-sunken font-medium text-ink">{footer}</tfoot>}
+        {footer && <tfoot className="bg-panel/70 font-medium text-ink">{footer}</tfoot>}
       </table>
     </div>
   );

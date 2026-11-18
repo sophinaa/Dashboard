@@ -43,16 +43,16 @@ export function ChartCard({
   };
   return (
     <Card className={className} aria-labelledby={`${id}-title`}>
-      <div className="mb-2 flex flex-wrap items-start justify-between gap-3">
+      <div className="mb-4 flex flex-wrap items-start justify-between gap-3">
         <div className="max-w-2xl">
-          <h2 id={`${id}-title`} className="text-base font-semibold text-ink">
+          <h2 id={`${id}-title`} className="text-lg font-semibold tracking-tight text-ink">
             {title}
           </h2>
-          {description && <div className="mt-1 text-sm leading-relaxed text-ink-muted">{description}</div>}
+          {description && <div className="mt-0.5 text-sm leading-relaxed text-ink-muted">{description}</div>}
         </div>
         <div className="flex items-center gap-2">
           {actions}
-          <div role="tablist" aria-label={`${title}: view as`} className="inline-flex rounded-lg border border-line bg-sunken p-0.5">
+          <div role="tablist" aria-label={`${title}: view as`} className="inline-flex rounded-full bg-surface p-1">
             {tabs.map((t, i) => (
               <button
                 key={t.k}
@@ -65,7 +65,7 @@ export function ChartCard({
                 tabIndex={tab === t.k ? 0 : -1}
                 onClick={() => setTab(t.k)}
                 onKeyDown={(e) => onKey(e, i)}
-                className={`inline-flex items-center gap-1.5 rounded-md px-2.5 py-1 text-xs font-medium ${tab === t.k ? "bg-surface text-ink shadow-card" : "text-ink-muted hover:text-ink"}`}
+                className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium ${tab === t.k ? "bg-night text-white" : "text-ink-2 hover:text-ink"}`}
               >
                 <Icon name={t.icon} className="h-4 w-4" />
                 {t.label}
@@ -75,14 +75,14 @@ export function ChartCard({
         </div>
       </div>
       <div role="tabpanel" id={`${id}-panel-chart`} aria-labelledby={`${id}-tab-chart`} hidden={tab !== "chart"}>
-        <figure aria-label={chartLabel} role="img" className="m-0">
+        <figure aria-label={chartLabel} role="img" className="m-0 rounded-3xl bg-surface p-4">
           {chart}
         </figure>
       </div>
       <div role="tabpanel" id={`${id}-panel-table`} aria-labelledby={`${id}-tab-table`} hidden={tab !== "table"}>
         {table}
       </div>
-      {footnote && <div className="mt-3 text-xs leading-relaxed text-ink-muted">{footnote}</div>}
+      {footnote && <div className="mt-3 px-1 text-xs leading-relaxed text-ink-muted">{footnote}</div>}
     </Card>
   );
 }

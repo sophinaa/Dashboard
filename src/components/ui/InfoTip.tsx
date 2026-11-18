@@ -22,7 +22,7 @@ export function InfoTip({ text, label = "Definition" }: { text: string; label?: 
         onFocus={() => setOpen(true)}
         onBlur={() => setOpen(false)}
         onKeyDown={(e) => e.key === "Escape" && setOpen(false)}
-        className="ml-1 inline-flex h-5 w-5 items-center justify-center rounded-full text-ink-muted hover:text-forest"
+        className="ml-1 inline-flex h-5 w-5 items-center justify-center rounded-full text-ink-muted hover:text-ink"
       >
         <Icon name="info" className="h-4 w-4" />
       </button>
@@ -30,7 +30,7 @@ export function InfoTip({ text, label = "Definition" }: { text: string; label?: 
         <span
           id={id}
           role="tooltip"
-          className="absolute left-1/2 top-6 z-30 w-64 -translate-x-1/2 rounded-md border border-line bg-surface p-3 text-left text-xs font-normal normal-case leading-relaxed tracking-normal text-ink-2 shadow-lg"
+          className="absolute left-1/2 top-6 z-30 w-64 -translate-x-1/2 rounded-2xl bg-night p-3 text-left text-xs font-normal normal-case leading-relaxed tracking-normal text-night-text shadow-lg"
         >
           {text}
         </span>

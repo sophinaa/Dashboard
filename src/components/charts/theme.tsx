@@ -9,7 +9,7 @@ import type { TooltipProps } from "recharts";
 
 export const SERIES = ["#1e7a4c", "#3b6fc0", "#c8602c", "#8a5cc2"] as const;
 export const DASHES = ["0", "6 4", "2 3", "10 3 2 3"] as const;
-export const GRID = "#e6dfd3";
+export const GRID = "#ebe4d6";
 export const AXIS = "#5d645d";
 export const NEUTRAL = "#9a9283";
 
@@ -28,12 +28,12 @@ export interface TooltipRow {
 
 export function ChartTooltip({ title, rows, note }: { title: string; rows: TooltipRow[]; note?: string }) {
   return (
-    <div className="rounded-md border border-line bg-surface px-3 py-2 text-xs shadow-lg">
-      <p className="mb-1 font-semibold text-ink">{title}</p>
+    <div className="rounded-2xl bg-night px-3.5 py-2.5 text-xs shadow-lg">
+      <p className="mb-1 font-semibold text-white">{title}</p>
       <ul className="space-y-0.5">
         {rows.map((r) => (
           <li key={r.name} className="flex items-center justify-between gap-4">
-            <span className="flex items-center gap-1.5 text-ink-2">
+            <span className="flex items-center gap-1.5 text-night-text">
               {r.color && (
                 <svg width="16" height="8" aria-hidden>
                   <line x1="0" y1="4" x2="16" y2="4" stroke={r.color} strokeWidth="2.5" strokeDasharray={r.dash && r.dash !== "0" ? r.dash : undefined} />
@@ -41,11 +41,11 @@ export function ChartTooltip({ title, rows, note }: { title: string; rows: Toolt
               )}
               {r.name}
             </span>
-            <span className="font-medium text-ink num">{r.value}</span>
+            <span className="font-semibold text-white num">{r.value}</span>
           </li>
         ))}
       </ul>
-      {note && <p className="mt-1 text-ink-muted">{note}</p>}
+      {note && <p className="mt-1 max-w-[16rem] text-night-muted">{note}</p>}
     </div>
   );
 }

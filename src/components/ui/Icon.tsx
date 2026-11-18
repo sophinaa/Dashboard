@@ -22,6 +22,14 @@ const PATHS: Record<string, string> = {
   table: "M3 4h14v12H3zM3 8h14M3 12h14M8 4v12",
   chart: "M3 17h14M5 14l4-5 3 3 4-6",
   external: "M11 3h6v6M17 3l-8 8M14 11v6H3V6h6",
+  pound: "M13.5 5.5A3 3 0 008 6.5V15M5.5 15h9M5.5 10.5h6",
+  bag: "M4 7h12l-1 10H5zM7.5 7V5.5a2.5 2.5 0 015 0V7",
+  receipt: "M5 3h10v14l-2-1.3L11 17l-2-1.3L7 17l-2-1.3zM8 7h4M8 10h4",
+  leaf: "M4 16C4 9 9 4 16 4c0 7-5 12-12 12zM4 16l6-6",
+  percent: "M5 15L15 5M6.5 8a1.5 1.5 0 100-3 1.5 1.5 0 000 3zM13.5 15a1.5 1.5 0 100-3 1.5 1.5 0 000 3z",
+  scale: "M10 3v14M6 17h8M4 6h12M4 6l-2 5a2.5 2.5 0 004 0zM16 6l-2 5a2.5 2.5 0 004 0z",
+  clicks: "M7 3v3M3 7h3M4.5 4.5l2 2M9 9l7 3-3 1-1 3z",
+  store: "M3 8l1.5-4h11L17 8M3 8h14M3 8v8h14V8M8 16v-4h4v4",
 };
 
 export function Icon({ name, className = "h-5 w-5", label }: { name: keyof typeof PATHS | string; className?: string; label?: string }) {

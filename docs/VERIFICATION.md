@@ -28,7 +28,7 @@
 | All five pages and `/researcher` return 200 | Pass |
 | `/researcher_only/ANSWER_GUIDE.md`, `/generate_data.py`, `/DATA_DICTIONARY.md`, `/data/datasets/A.json` and `/dataset_A/dashboard_data.json` | 404. These files are not in the repository, and `data/` is not served. |
 | `/api/dataset` serves only the configured dataset (A: 3,440 orders; after switching to B: 3,590) | Pass |
-| AI off: `/api/ai/status` → 403, `/api/ai` → 403, and the "Ask the AI assistant" button is absent from the page | Pass |
+| AI off: `/api/ai/status` → 403, `/api/ai` → 403, and the "Ask the assistant" button is absent from the page | Pass |
 | AI on with no key: `/api/ai` → 503 "AI is unavailable…", and the panel shows "AI unavailable" with no scripted text | Pass |
 | A stale dataset ID in an AI request → 409 | Implemented in the route |
 | Participant mode hides the researcher badge and link | Pass |

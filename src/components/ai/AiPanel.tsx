@@ -116,25 +116,25 @@ export function AiPanel({ open, page, datasetId, onClose }: { open: boolean; pag
       id="ai-panel"
       hidden={!open}
       aria-labelledby="ai-panel-title"
-      className="fixed inset-y-0 right-0 z-40 w-full border-l border-line bg-surface shadow-2xl sm:w-[440px]"
+      className="fixed bottom-3 right-3 top-3 z-40 w-[calc(100%-1.5rem)] overflow-hidden rounded-4xl bg-night text-night-text shadow-2xl sm:w-[440px]"
     >
       <div className="flex h-full flex-col">
-        <div className="flex items-start justify-between gap-3 border-b border-line px-5 py-4">
+        <div className="flex items-start justify-between gap-3 border-b border-night-2 px-6 py-5">
           <div>
-            <h2 id="ai-panel-title" ref={headingRef} tabIndex={-1} className="flex items-center gap-2 text-base font-semibold text-ink">
-              <Icon name="sparkle" className="h-4 w-4 text-forest" /> AI assistant
+            <h2 id="ai-panel-title" ref={headingRef} tabIndex={-1} className="flex items-center gap-2.5 text-lg font-semibold text-white">
+              <span aria-hidden className="flex h-7 w-7 items-center justify-center rounded-full bg-tile-blush text-ink"><Icon name="sparkle" className="h-4 w-4" /></span> StoreScope assistant
             </h2>
-            <p className="mt-0.5 text-xs text-ink-muted">Explains the figures on screen. It can make mistakes — check answers against the charts.</p>
+            <p className="mt-1 text-xs text-night-muted">Explains the figures on screen. It can make mistakes — check answers against the charts.</p>
           </div>
-          <button type="button" onClick={onClose} className="rounded-md p-1.5 text-ink-muted hover:bg-sunken hover:text-ink" aria-label="Close AI assistant">
+          <button type="button" onClick={onClose} className="rounded-full bg-tile-blush p-1.5 text-ink hover:bg-white" aria-label="Close AI assistant">
             <Icon name="close" />
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto px-5 py-4" aria-live="polite" aria-busy={busy}>
-          {status.kind === "checking" && <p className="text-sm text-ink-muted">Checking AI availability…</p>}
+        <div className="flex-1 overflow-y-auto px-6 py-5" aria-live="polite" aria-busy={busy}>
+          {status.kind === "checking" && <p className="text-sm text-night-muted">Checking AI availability…</p>}
           {status.kind === "unavailable" && (
-            <div className="rounded-lg border border-caution-line bg-caution-bg p-4 text-sm text-caution-ink">
+            <div className="rounded-3xl bg-caution-bg p-4 text-sm text-caution-ink">
               <p className="flex items-center gap-2 font-semibold">
                 <Icon name="warning" className="h-4 w-4" /> AI unavailable
               </p>
@@ -146,17 +146,17 @@ export function AiPanel({ open, page, datasetId, onClose }: { open: boolean; pag
               <button
                 type="button"
                 onClick={() => send(`Explain what the ${PAGE_NAMES[page]} page shows for the selected period.`)}
-                className="w-full rounded-lg border border-forest bg-forest-50 px-4 py-3 text-left text-sm font-medium text-forest hover:bg-forest-100"
+                className="w-full rounded-3xl bg-tile-blush px-4 py-3 text-left text-sm font-semibold text-ink hover:bg-white"
               >
                 Explain this page
                 <span className="block text-xs font-normal text-ink-2">{contextLabel}</span>
               </button>
               <div>
-                <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-ink-muted">Example questions</p>
+                <p className="mb-2 text-xs font-medium text-night-muted">Or try a question</p>
                 <ul className="space-y-2">
                   {SUGGESTIONS.map((s) => (
                     <li key={s}>
-                      <button type="button" onClick={() => send(s)} className="w-full rounded-lg border border-line px-3 py-2 text-left text-sm text-ink-2 hover:border-forest hover:text-ink">
+                      <button type="button" onClick={() => send(s)} className="w-full rounded-2xl bg-night-2 px-4 py-2.5 text-left text-sm text-night-text hover:bg-surface hover:text-ink">
                         {s}
                       </button>
                     </li>
@@ -167,14 +167,14 @@ export function AiPanel({ open, page, datasetId, onClose }: { open: boolean; pag
           )}
           <ol className="space-y-4">
             {turns.map((t, i) => (
-              <li key={i} className={t.role === "user" ? "ml-8" : ""}>
+              <li key={i} className={t.role === "user" ? "ml-10 flex justify-end" : ""}>
                 {t.role === "user" ? (
-                  <div className="rounded-lg bg-sunken px-3 py-2 text-sm text-ink">
+                  <div className="rounded-3xl rounded-br-md bg-tile-sky px-4 py-2.5 text-sm text-ink">
                     <span className="sr-only">You asked: </span>
                     {t.content}
                   </div>
                 ) : (
-                  <div className="rounded-lg border border-line px-4 py-3">
+                  <div className="rounded-3xl rounded-bl-md bg-surface px-4 py-3.5">
                     <p className="mb-1 flex items-center gap-1.5 text-xs font-semibold text-forest">
                       <Icon name="sparkle" className="h-3.5 w-3.5" /> AI-generated answer
                     </p>
@@ -190,12 +190,12 @@ export function AiPanel({ open, page, datasetId, onClose }: { open: boolean; pag
             ))}
           </ol>
           {busy && (
-            <p className="mt-4 flex items-center gap-2 text-sm text-ink-muted" role="status">
-              <span className="h-2 w-2 animate-pulse rounded-full bg-forest" aria-hidden /> Working on an answer… this can take up to a minute.
+            <p className="mt-4 flex items-center gap-2 text-sm text-night-text" role="status">
+              <span className="h-2 w-2 animate-pulse rounded-full bg-tile-sage" aria-hidden /> Working on an answer… this can take up to a minute.
             </p>
           )}
           {error && (
-            <p role="alert" className="mt-4 rounded-md border border-danger-line bg-danger-bg px-3 py-2 text-sm text-danger-ink">
+            <p role="alert" className="mt-4 rounded-2xl bg-danger-bg px-4 py-2.5 text-sm text-danger-ink">
               {error}
             </p>
           )}
@@ -204,13 +204,13 @@ export function AiPanel({ open, page, datasetId, onClose }: { open: boolean; pag
 
         {status.kind === "ready" && (
           <form
-            className="border-t border-line px-5 py-4"
+            className="border-t border-night-2 px-6 py-4"
             onSubmit={(e) => {
               e.preventDefault();
               send(input);
             }}
           >
-            <label htmlFor="ai-input" className="mb-1 block text-xs font-medium text-ink-2">
+            <label htmlFor="ai-input" className="mb-1.5 block text-xs font-medium text-night-text">
               Ask about {PAGE_NAMES[page].toLowerCase()} or the shop
             </label>
             <div className="flex gap-2">
@@ -227,20 +227,20 @@ export function AiPanel({ open, page, datasetId, onClose }: { open: boolean; pag
                   }
                 }}
                 aria-describedby="ai-privacy"
-                className="min-h-[44px] flex-1 resize-y rounded-md border border-line-strong bg-surface px-3 py-2 text-sm"
+                className="min-h-[44px] flex-1 resize-y rounded-3xl border-0 bg-surface px-4 py-2.5 text-sm text-ink"
                 placeholder="e.g. Why did gross margin change?"
               />
-              <button type="submit" disabled={busy || !input.trim()} className="inline-flex items-center gap-1.5 self-end rounded-md bg-forest px-3 py-2 text-sm font-medium text-white hover:bg-forest-700 disabled:opacity-50">
+              <button type="submit" disabled={busy || !input.trim()} className="inline-flex items-center gap-1.5 self-end rounded-full bg-tile-blush px-4 py-2.5 text-sm font-semibold text-ink hover:bg-white disabled:opacity-50">
                 <Icon name="send" className="h-4 w-4" />
                 Send
               </button>
             </div>
             <div className="mt-2 flex items-start justify-between gap-3">
-              <p id="ai-privacy" className="text-xs leading-relaxed text-ink-muted">
+              <p id="ai-privacy" className="text-xs leading-relaxed text-night-muted">
                 Questions and the shop figures are sent to an AI provider to generate answers. StoreScope does not save them. Please don&apos;t include personal information.
               </p>
               {turns.length > 0 && (
-                <button type="button" onClick={() => { abortRef.current?.abort(); setTurns([]); setError(null); setBusy(false); }} className="flex-none text-xs font-medium text-ink-2 underline hover:text-ink">
+                <button type="button" onClick={() => { abortRef.current?.abort(); setTurns([]); setError(null); setBusy(false); }} className="flex-none text-xs font-medium text-night-text underline hover:text-white">
                   Clear chat
                 </button>
               )}
@@ -254,7 +254,7 @@ export function AiPanel({ open, page, datasetId, onClose }: { open: boolean; pag
 
 function ScenarioCard({ s }: { s: ScenarioResult }) {
   return (
-    <div className="mt-3 rounded-lg border border-caution-line bg-caution-bg/60 p-3 text-xs text-ink-2">
+    <div className="mt-3 rounded-2xl bg-caution-bg p-3 text-xs text-ink-2">
       <p className="flex items-center gap-1.5 font-semibold text-caution-ink">
         <Icon name="warning" className="h-3.5 w-3.5" /> Hypothetical scenario — not a prediction
       </p>

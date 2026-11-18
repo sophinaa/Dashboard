@@ -10,7 +10,7 @@ const STYLES = {
 export function Callout({ tone = "info", title, children, className = "" }: { tone?: keyof typeof STYLES; title?: string; children: React.ReactNode; className?: string }) {
   const s = STYLES[tone];
   return (
-    <div className={`flex gap-3 rounded-lg border px-4 py-3 text-sm leading-relaxed ${s.box} ${className}`} role={tone === "danger" ? "alert" : undefined}>
+    <div className={`flex gap-3 rounded-3xl border px-5 py-3.5 text-sm leading-relaxed ${s.box} ${className}`} role={tone === "danger" ? "alert" : undefined}>
       <Icon name={s.icon} className="mt-0.5 h-5 w-5 flex-none" />
       <div>
         <p className="font-semibold">{title ?? s.label}</p>
