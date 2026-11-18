@@ -1,0 +1,21 @@
+export function Card({ children, className = "", as: As = "section", ...rest }: { children: React.ReactNode; className?: string; as?: "section" | "div" | "article" } & React.HTMLAttributes<HTMLElement>) {
+  return (
+    <As className={`rounded-xl border border-line bg-surface p-4 shadow-card ${className}`} {...rest}>
+      {children}
+    </As>
+  );
+}
+
+export function SectionHeading({ title, description, id, actions }: { title: string; description?: React.ReactNode; id?: string; actions?: React.ReactNode }) {
+  return (
+    <div className="mb-3 flex flex-wrap items-start justify-between gap-3">
+      <div className="max-w-3xl">
+        <h2 id={id} className="text-base font-semibold text-ink">
+          {title}
+        </h2>
+        {description && <p className="mt-1 text-sm leading-relaxed text-ink-muted">{description}</p>}
+      </div>
+      {actions}
+    </div>
+  );
+}

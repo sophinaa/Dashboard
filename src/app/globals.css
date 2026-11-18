@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  background: #f6f3ec;
+  font-size: 14px;
+}
+
+body {
+  background: #f6f3ec;
+  color: #1d2620;
+  font-feature-settings: "tnum" 1;
+}
+
+/* Visible, consistent keyboard focus everywhere */
+:focus-visible {
+  outline: 3px solid #1e5c3f;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.num {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Recharts: keep focus ring visible on the chart wrapper, hide default svg outline */
+.recharts-wrapper svg:focus,
+.recharts-surface:focus {
+  outline: none;
+}
+
+.prose-ai h3,
+.prose-ai strong {
+  color: #1d2620;
+}
+.prose-ai p {
+  margin: 0.5rem 0;
+}
+.prose-ai ul,
+.prose-ai ol {
+  margin: 0.4rem 0 0.6rem 1.2rem;
+}
+.prose-ai ul {
+  list-style: disc;
+}
+.prose-ai ol {
+  list-style: decimal;
+}
+.prose-ai li {
+  margin: 0.2rem 0;
+}
+.prose-ai h1,
+.prose-ai h2,
+.prose-ai h3,
+.prose-ai h4 {
+  font-weight: 600;
+  margin: 0.9rem 0 0.25rem;
+  font-size: 0.95rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
